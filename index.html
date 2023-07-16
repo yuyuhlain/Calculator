@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Calculator</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <header>
+        <h1>Calculator</h1>
+    </header>
+    <section>
+        <form onsubmit="calculate()">
+            <input type="number" name="firstnumber" id="firstnumber" placeholder="firstnumber">
+            <input type="number" name="secondnumber" id="secondnumber" placeholder="secondnumber">
+            <select name="operator" id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+
+            </select>
+            <input type="submit">
+        </form>
+    </section>
+</body>
+<script>
+    function calculate(){
+        var fni=document.getElementById("firstnumber");
+        var sni=document.getElementById("secondnumber");
+        var sign=document.getElementById("operator").value;
+        var fn=parseInt(fni.value);
+        var sn=parseInt(sni.value);
+        switch(sign){
+            case "+":
+                result=fn+sn;
+            break;
+            case "-":
+                result=fn-sn;
+            break;
+            case "*":
+                result=fn*sn;
+                break;
+                case "/":
+                    result=fn/sn;
+                    break;
+        }
+        alert("Result ="+result);
+    
+    }
+</script>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator V3</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <header>
+        <h1>Calculator V3</h1>
+    </header>
+    <section>
+        <div class="cal-box">
+            <textarea name="digits" id="digits" cols="30" rows="5">0</textarea>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td><i onclick="digit(7)">7</i></td>
+                    <td><i onclick="digit(8)">8</i></td>
+                    <td><i onclick="digit(9)">9</i></td>
+                    <td><i onclick="digit('C')">C</i></td>
+                </tr>
+                <tr>
+                    <td><i onclick="digit(4)">4</i></td>
+                    <td><i onclick="digit(5)">5</i></td>
+                    <td><i onclick="digit(6)">6</i></td>
+                    <td><i onclick="digit('/')">/</i></td>
+                </tr>
+                <tr>
+                    <td><i onclick="digit(1)">1</i></td>
+                    <td><i onclick="digit(2)">2</i></td>
+                    <td><i onclick="digit(3)">3</i></td>
+                    <td><i onclick="digit('*')">x</i></td>
+                </tr>
+                <tr>
+                    <td><i onclick="digit(0)">0</i></td>
+                    <td><i onclick="calculate()">=</i></td>
+                    <td><i onclick="digit('-')">-</i></td>
+                    <td><i onclick="digit('+')">+</i></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</body>
+<script>
+    function digit(d){
+        console.log(d);
+        var ta=document.getElementById("digits");
+        var v=ta.value;
+        if(d=="C"){
+            ta.value="0";
+        }else{
+            ta.value=v=="0"?d:v+d;
+        }
+    }function calculate(){
+        var input=document.getElementById("digits");
+        var equation=input.value;
+        var eqarr=equation.split("");
+        var temp="";
+        var sign="";
+        var fn=0;
+        var result=0;
+        for(let i=0;i<eqarr.length;i++){
+            switch(eqarr[i]){
+                case "+":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="+";
+                    break;
+                    case "-":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="-";
+                    break;
+                    case "*":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="/";
+                    break;
+                    case "+":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="/";
+                    break;
+                     default:
+                        temp=temp+eqarr[i];
+                        break;
+            }
+        }if(temp){
+            fn=parseInt(temp)
+            temp="";
+            if(sign){
+                result=cal(result,fn,sign);
+            }else{
+                result=fn;
+            }
+        }
+        input.value=result;
+
+    function cal(fn,sn,sign){
+        let result;
+        switch(sign){
+            case "+":
+                result=fn+sn;
+            break;
+            case "-":
+                result=fn-sn;
+            break;
+            case "*":
+                result=fn*sn;
+                break;
+                case "/":
+                    result=fn/sn;
+                    break;
+                    default:
+                        break;
+        }
+        console.log(result);
+        return result;
+    }
+}
+</script>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator V2</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <header>
+        <h1>Calculator V2</h1>
+    </header>
+    <section>
+        <label>Result :<i id="result"></i></label>
+        
+            <input type="text" id="equation" name="equation">
+            <button onclick="calculate()">Calculate</button>
+    </section>
+</body>
+<script>
+    function calculate(){
+        var equation=document.getElementById("equation").value;
+        var eqarr=equation.split("");
+        var temp="";
+        var sign="";
+        var fn=0;
+        var result=0;
+        for(let i=0;i<eqarr.length;i++){
+            switch(eqarr[i]){
+                case "+":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="+";
+                    break;
+                    case "-":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="-";
+                    break;
+                    case "*":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="/";
+                    break;
+                    case "+":
+                    if(temp){
+                        fn=parseInt(temp);
+                        temp="";
+                        if(sign){
+                            result=cal(result,fn,sign);
+                        }else{
+                            result=fn;
+                        }
+                    }
+                    sign="/";
+                    break;
+                     default:
+                        temp=temp+eqarr[i];
+                        break;
+            }
+        }if(temp){
+            fn=parseInt(temp)
+            temp="";
+            if(sign){
+                result=cal(result,fn,sign);
+            }else{
+                result=fn;
+            }
+        }
+        document.getElementById("result").innerHTML=result;
+        equation.value="";
+        equation.innerHTML="";
+    }
+    function cal(fn,sn,sign){
+        let result;
+        switch(sign){
+            case "+":
+                result=fn+sn;
+            break;
+            case "-":
+                result=fn-sn;
+            break;
+            case "*":
+                result=fn*sn;
+                break;
+                case "/":
+                    result=fn/sn;
+                    break;
+                    default:
+                        break;
+        }
+        console.log(result);
+        return result;
+    }
+</script>
+</html>
